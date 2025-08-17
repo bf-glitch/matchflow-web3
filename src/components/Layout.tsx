@@ -13,10 +13,10 @@ export function Layout({ children }: LayoutProps) {
       <div className="min-h-screen flex w-full bg-background">
         <AppSidebar />
         
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col min-w-0">
           {/* Top Header */}
           <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card/50 backdrop-blur-sm">
-            <SidebarTrigger className="lg:hidden" />
+            <SidebarTrigger />
             
             <div className="flex items-center gap-4 ml-auto">
               <Button variant="outline" size="sm" className="gap-2">
