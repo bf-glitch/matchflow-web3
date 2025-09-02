@@ -325,7 +325,7 @@ export default function Explore() {
           <p className="text-sm text-muted-foreground">1-50 of 1250</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {mockProjects.map((project) => (
             <ProjectCard
               key={project.id}
