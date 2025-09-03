@@ -21,45 +21,97 @@ const mockProjects = [
     id: "1",
     name: "Arweave",
     logo: arweaveLogo,
-    description: "Permanent data storage protocol with pay-once, store-forever model. Building the foundation for a truly decentralized web.",
+    description: "Mintrise is a Web3-based Real World Asset (RWA) investment platform, designed to bridge traditional real e...",
     blockchain: "Ethereum",
     integrations: ["Chainlink", "Uniswap", "MetaMask"],
     githubStats: { stars: 1247, forks: 342 },
     compatibilityScore: 87,
-    compatibility: { tech: 92, marketing: 78, community: 91 }
+    compatibility: { tech: 87, marketing: 79, community: 91 },
+    socialMedia: {
+      totalFollowers: "125K",
+      likes: "15.4K",
+      comments: "8.9K", 
+      shares: "4.6K",
+      sentimentScore: 32
+    },
+    marketing: {
+      audienceOverlap: 64,
+      sharedChannels: ["Twitter", "Medium", "Discord"],
+      brandToneSimilarity: 32,
+      marketingScore: 79
+    },
+    tokenPerformance: {
+      currentPrice: "$2.45",
+      marketCap: "$950M",
+      volume24h: "$12.5M",
+      ath: "$4.2",
+      atl: "$0.15",
+      compatibilityScore: 30
+    }
   },
   {
-    id: "2",
+    id: "2", 
     name: "Chainlink",
     logo: chainlinkLogo,
-    description: "Decentralized oracle network providing real-world data to smart contracts across multiple blockchains.",
+    description: "Mintrise is a Web3-based Real World Asset (RWA) investment platform, designed to bridge traditional real e...",
     blockchain: "Ethereum",
     integrations: ["Uniswap", "MetaMask", "Polygon"],
     githubStats: { stars: 2156, forks: 891 },
     compatibilityScore: 95,
-    compatibility: { tech: 96, marketing: 89, community: 98 }
+    compatibility: { tech: 95, marketing: 89, community: 98 },
+    socialMedia: {
+      totalFollowers: "125K",
+      likes: "15.4K",
+      comments: "8.9K",
+      shares: "4.6K", 
+      sentimentScore: 32
+    },
+    marketing: {
+      audienceOverlap: 64,
+      sharedChannels: ["Twitter", "Medium", "Discord"],
+      brandToneSimilarity: 32,
+      marketingScore: 89
+    },
+    tokenPerformance: {
+      currentPrice: "$2.45",
+      marketCap: "$950M", 
+      volume24h: "$12.5M",
+      ath: "$4.2",
+      atl: "$0.15",
+      compatibilityScore: 30
+    }
   },
   {
     id: "3",
-    name: "Polygon",
+    name: "Polygon", 
     logo: polygonLogo,
-    description: "Layer 2 scaling solution for Ethereum providing faster and cheaper transactions for DeFi applications.",
+    description: "Mintrise is a Web3-based Real World Asset (RWA) investment platform, designed to bridge traditional real e...",
     blockchain: "Polygon",
     integrations: ["Chainlink", "Uniswap", "MetaMask"],
     githubStats: { stars: 3421, forks: 1245 },
     compatibilityScore: 82,
-    compatibility: { tech: 85, marketing: 76, community: 85 }
-  },
-  {
-    id: "4",
-    name: "Uniswap",
-    logo: uniswapLogo,
-    description: "Leading decentralized exchange protocol enabling automated token trading through liquidity pools.",
-    blockchain: "Ethereum",
-    integrations: ["Chainlink", "MetaMask", "Polygon"],
-    githubStats: { stars: 4567, forks: 2134 },
-    compatibilityScore: 78,
-    compatibility: { tech: 81, marketing: 72, community: 82 }
+    compatibility: { tech: 82, marketing: 76, community: 85 },
+    socialMedia: {
+      totalFollowers: "125K",
+      likes: "15.4K", 
+      comments: "8.9K",
+      shares: "4.6K",
+      sentimentScore: 32
+    },
+    marketing: {
+      audienceOverlap: 64,
+      sharedChannels: ["Twitter", "Medium", "Discord"],
+      brandToneSimilarity: 32,
+      marketingScore: 76
+    },
+    tokenPerformance: {
+      currentPrice: "$2.45",
+      marketCap: "$950M",
+      volume24h: "$12.5M", 
+      ath: "$4.2",
+      atl: "$0.15",
+      compatibilityScore: 30
+    }
   }
 ]
 
@@ -81,6 +133,7 @@ const suggestedMatches = [
 export default function Explore() {
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState("")
+  const [activeTab, setActiveTab] = useState("tech-fit")
   const [filters, setFilters] = useState({
     projectType: "",
     projectStage: "",
@@ -319,9 +372,48 @@ export default function Explore() {
       {/* Projects Grid */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">
-            Tech Fit <Badge variant="secondary" className="ml-2">Performance</Badge> <Badge variant="outline" className="ml-1">Marketing</Badge> <Badge variant="outline" className="ml-1">Token Performance</Badge>
-          </h2>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab("tech-fit")}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "tech-fit" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              🔧 Tech Fit
+            </button>
+            <button
+              onClick={() => setActiveTab("performance")}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "performance" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              📈 Performance
+            </button>
+            <button
+              onClick={() => setActiveTab("marketing")}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "marketing" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              📊 Marketing
+            </button>
+            <button
+              onClick={() => setActiveTab("token-performance")}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "token-performance" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              📈 Token Performance
+            </button>
+          </div>
           <p className="text-sm text-muted-foreground">1-50 of 1250</p>
         </div>
 
@@ -330,6 +422,7 @@ export default function Explore() {
             <ProjectCard
               key={project.id}
               project={project}
+              activeTab={activeTab}
               onViewDetails={handleViewDetails}
             />
           ))}
